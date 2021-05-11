@@ -30,3 +30,8 @@ code {
 .flex-container {
   display: flex !important;
 }
+
+.btn {
+  background-color: red !important;
+  color: white !important;
+}
