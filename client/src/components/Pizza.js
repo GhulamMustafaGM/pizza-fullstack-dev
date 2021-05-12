@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
+import {Modal} from 'react-bootstrap'
 
 export default function Pizza({ pizza }) {
     const [quantity, setquantity] = useState(1)
     const [varient, setvarient] = useState('small')
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <div style={{ margin: '70px' }} className='shadow-lg p-3 mb-5 bg-white rounded'>
             <h1>{pizza.name}</h1>
@@ -26,15 +31,29 @@ export default function Pizza({ pizza }) {
                     </select>
                 </div>
             </div>
-            
+
             <div className="flex-container">
-                <div className='m-1 w-100'> 
-                    <h1 className='mt-1'>Price : {pizza.prices[0][varient] * quantity } Rs/-</h1>
+                <div className='m-1 w-100'>
+                    <h1 className='mt-1'>Price : {pizza.prices[0][varient] * quantity} Rs/-</h1>
                 </div>
                 <div className='m-1 w-100'>
                     <button className="btn">ADD TO CART</button>
                 </div>
             </div>
+
+            <Modal.Dialog show={show}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal title</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                    <p>Modal body text goes here.</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <button className="btn">CLOSE</button>
+                </Modal.Footer>
+            </Modal.Dialog>
         </div>
     )
 }
