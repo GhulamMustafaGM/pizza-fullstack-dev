@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Modal} from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 
 export default function Pizza({ pizza }) {
     const [quantity, setquantity] = useState(1)
@@ -10,8 +10,10 @@ export default function Pizza({ pizza }) {
 
     return (
         <div style={{ margin: '70px' }} className='shadow-lg p-3 mb-5 bg-white rounded'>
-            <h1>{pizza.name}</h1>
-            <img src={pizza.image} className="img-fluid" style={{ height: '200px', width: '200px' }} />
+            <div onClick={handleShow}>
+                <h1>{pizza.name}</h1>
+                <img src={pizza.image} className="img-fluid" style={{ height: '200px', width: '200px' }} />
+            </div>
 
             <div className="flex-container">
                 <div className='w-100 m-1'>
@@ -41,19 +43,20 @@ export default function Pizza({ pizza }) {
                 </div>
             </div>
 
-            <Modal.Dialog show={show}>
+            <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>{pizza.name}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>Modal body text goes here.</p>
+                    <img src={pizza.image} className="img-fluid" style={{ height:'400px' }} />
+                    <p>{pizza.description}</p>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button className="btn">CLOSE</button>
+                    <button className="btn" onClick={handleClose}>CLOSE</button>
                 </Modal.Footer>
-            </Modal.Dialog>
+            </Modal>
         </div>
     )
 }
